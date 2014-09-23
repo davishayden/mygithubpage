@@ -16,21 +16,28 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	
-	<script>
-function allowDrop(ev) {
-    ev.preventDefault();
-}
+<script>
 
-function drag(ev) {
-    ev.dataTransfer.setData("text/html", ev.target.id);
-}
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+	
+	function dragUser(ev) { 
+		
+		 ev.dataTransfer.setData("text/html", ev.target.id);
+	
+	}
+	function dropUser(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text/html");
+		document.getElementById(ev.target.id).innerHTML = data;
+	}
 
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text/html");
-    ev.target.appendChild(document.getElementById(data));
-}
+	
 </script>
+
+
+
    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -77,12 +84,12 @@ function drop(ev) {
 <div class="col-sm-2">
           <ul class="list-group">
             <li class="list-group-item" style="font-family: 'Pacifico', cursive;font-size: 20px">Friends Online</li>
-            <li class="list-group-item">Mikey Morton</li>
-            <li class="list-group-item">Nick No Limits</li>
-            <li class="list-group-item">Hayden Davis</li>
-            <li class="list-group-item">Todd Scott-Dettl</li>
-            <li class="list-group-item">Jordan Smedes</li>
-            <li class="list-group-item">Taylor Rabbai</li>
+            <li class="list-group-item" draggable="true" ondragstart="dragUser(event)">Mikey Morton</li>
+            <li class="list-group-item" draggable="true" ondragstart="dragUser(event)">Nick No Limits</li>
+            <li class="list-group-item" draggable="true" ondragstart="dragUser(event)">Hayden Davis</li>
+            <li class="list-group-item" draggable="true" ondragstart="dragUser(event)">Todd Scott-Dettl</li>
+            <li class="list-group-item" draggable="true" ondragstart="dragUser(event)">Jordan Smedes</li>
+            <li id="reid" class="list-group-item" draggable="true" ondragstart="dragUser(event)">Reid Sexton</li>
           </ul>
  </div><!-- /.col-sm-4 -->
 <div class="col-sm-8">
@@ -116,16 +123,14 @@ function drop(ev) {
           <ul class="list-group">
             <li class="list-group-item"style="font-family: 'Pacifico', cursive; font-size: 20px"
            >Current Group</li>
-            <li class="list-group-item">Taylor Brushwyler</li>
-            <li class="list-group-item">Reid Sanders</li>
-            <li class="list-group-item">Daniel Hurshy</li>
-            <li class="list-group-item">Derek Thompson</li>
+            <li class="list-group-item" draggable="true">Taylor Brushwyler</li>
+            <li class="list-group-item" draggable="true">Reid Sanders</li>
+            <li class="list-group-item" draggable="true">Daniel Hurshy</li>
+            <li class="list-group-item" draggable="true">Derek Thompson</li>
+            <li  id="addUser" class="list-group-item" ondrop="dropUser(event)"
+            ondragover="allowDrop(event)"></li>
           </ul>
  </div><!-- /.col-sm-4 -->
- <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-
-<img id="drag1" src="bob.gif" draggable="true"
-ondragstart="drag(event)" width="336" height="69">
 
 
 
