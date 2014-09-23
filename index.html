@@ -15,7 +15,22 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	<script>
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
+function drag(ev) {
+    ev.dataTransfer.setData("text/html", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text/html");
+    ev.target.appendChild(document.getElementById(data));
+}
+</script>
    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -107,6 +122,10 @@
             <li class="list-group-item">Derek Thompson</li>
           </ul>
  </div><!-- /.col-sm-4 -->
+ <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<img id="drag1" src="bob.gif" draggable="true"
+ondragstart="drag(event)" width="336" height="69">
 
 
 
